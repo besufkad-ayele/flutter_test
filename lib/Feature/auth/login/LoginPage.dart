@@ -9,7 +9,7 @@ class Loginpage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Login Page'),
         centerTitle: true,
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       ),
       body: Center(
         child: SingleChildScrollView(
