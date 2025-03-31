@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:chapter_one/Feature/onBoarding/WelcomePage.dart';
+import 'package:chapter_one/Feature/profile/bottomsheet_content.dart';
 import 'package:chapter_one/core/constant/constants.dart';
 import 'package:chapter_one/core/shared/buttons/custom_tabBar.dart';
 import 'package:chapter_one/core/shared/buttons/follow_button.dart';
@@ -90,6 +91,12 @@ class _ProfileState extends State<Profile> {
                     setState(() {
                       isFollowing = !isFollowing;
                     });
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return BottomsheetContent();
+                      },
+                    );
                     return ('pressed follow');
                   }),
               Gap(8),

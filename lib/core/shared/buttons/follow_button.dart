@@ -8,6 +8,7 @@ class FollowButton extends StatefulWidget {
   final double height;
   final String label;
   final Function onPressed;
+  final Color? borderColor;
 
   const FollowButton({
     super.key,
@@ -16,6 +17,7 @@ class FollowButton extends StatefulWidget {
     required this.height,
     required this.label,
     required this.onPressed,
+    this.borderColor
   });
 
   @override
