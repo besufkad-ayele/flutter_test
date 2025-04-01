@@ -2,75 +2,55 @@
 
 import 'package:chapter_one/Feature/onBoarding/WelcomePage.dart';
 import 'package:chapter_one/Feature/profile/bottomsheet_content.dart';
+import 'package:chapter_one/Feature/profile/dishes.dart';
+import 'package:chapter_one/Feature/profile/recent.dart';
+import 'package:chapter_one/Feature/profile/resturant.dart';
+import 'package:chapter_one/core/Provider/riverpod.dart';
 import 'package:chapter_one/core/constant/constants.dart';
 import 'package:chapter_one/core/shared/buttons/custom_tabBar.dart';
 import 'package:chapter_one/core/shared/buttons/follow_button.dart';
 import 'package:chapter_one/core/shared/cards/message_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
-class Profile extends StatefulWidget {
+class Profile extends ConsumerWidget {
   const Profile({super.key});
 
   @override
-  State<Profile> createState() => _ProfileState();
-}
-
-class _ProfileState extends State<Profile> {
-  final List<String> tabs = ["Recent", "Resturant", "Dishes"];
-
-  int _selectedIndex = 0;
-  bool isFollowing = false;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Tomas',
+          'Lidiya Tesfaye',
           style: TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 12.sp,
           ),
         ),
         centerTitle: true,
+        backgroundColor: Colors.transparent, // Set a fixed background color
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: 20.h),
-          // TODO: Add a gradient to the circle make it
-          Container(
-            width: 80.w,
-            height: 80.h,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.white, // Outer white border
-            ),
-            child: Container(
-              width: 80.w,
-              height: 80.h,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.orange, // Inner orange border
-              ),
+          CircleAvatar(
+            radius: 33.r,
+            backgroundColor: AppColors.primaryColor,
+            child: CircleAvatar(
+              radius: 31.r,
+              backgroundColor: Colors.white,
               child: CircleAvatar(
-                radius: 70.r,
-                backgroundColor: Colors.orange,
-                child: CircleAvatar(
-                  radius: 60.r,
-                  backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                  child: CircleAvatar(
-                    radius: 58.r,
-                    backgroundImage: AssetImage(
-                        'assets/images/lidiya-tesfaye.png'), // Replace with your image path
-                  ),
-                ),
+                radius: 30.r,
+                backgroundImage:
+                    const AssetImage('assets/images/lidiya-tesfaye.png'),
               ),
             ),
           ),
+          // CircularImageAvatar(),
           SizedBox(height: 10.h),
           // Membership description
           Text(
@@ -83,43 +63,52 @@ class _ProfileState extends State<Profile> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               FollowButton(
-                  color: AppColors.buttonColor,
-                  width: 70.w,
-                  height: 40.h,
-                  label: "Follow",
-                  onPressed: () {
-                    setState(() {
-                      isFollowing = !isFollowing;
-                    });
-                    showModalBottomSheet(
-                      context: context,
-                      builder: (context) {
-                        return BottomsheetContent();
-                      },
-                    );
-                    return ('pressed follow');
-                  }),
-              Gap(8),
-              Container(
-                padding: EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: AppColors.backgroundColor,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Color(0xFFD4D4D4), width: 1.w),
-                ),
-                child: Icon(Icons.camera_alt,
-                    color: Colors.black), // Instagram icon
+                color: AppColors.buttonColor,
+                width: 70.w,
+                height: 40.h,
+                label: "Follow",
+                onPressed: () => ref
+                    .read(riverpodFollowingButton.notifier)
+                    .toggleIsFollowing(),
               ),
               Gap(8),
               Container(
-                padding: EdgeInsets.all(12),
-
+                padding: EdgeInsets.only(
+                  left: 12.r,
+                  right: 12.r,
+                  top: 9.r,
+                  bottom: 9.r,
+                ),
+                decoration: BoxDecoration(
+                  color: AppColors.backgroundColor,
+                  borderRadius: BorderRadius.circular(12.r),
+                  border: Border.all(color: Color(0xFFD4D4D4), width: 1.w),
+                ),
+                child: SvgPicture.asset(
+                  'assets/icons/instagram.svg',
+                  width: 24,
+                  height: 24,
+                  color: Colors.black, // Optional: Change icon color
+                ), // Instagram icon
+              ),
+              Gap(8),
+              Container(
+                padding: EdgeInsets.only(
+                  left: 12.r,
+                  right: 12.r,
+                  top: 9.r,
+                  bottom: 9.r,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: Color(0xFFD4D4D4), width: 1.w),
                 ),
-                child: const Icon(Icons.emoji_events,
-                    color: Colors.amber), // Champion icon Instagram icon
+                child: SvgPicture.asset(
+                  'assets/icons/cup-big.svg',
+                  width: 24,
+                  height: 24,
+                  color: AppColors.primaryColor, // Optional: Change icon color
+                ), // Champion icon Instagram icon
               ),
             ],
           ),
@@ -165,7 +154,7 @@ class _ProfileState extends State<Profile> {
               Column(
                 children: [
                   Text(
-                    //TODO: Add a gradient to the text make it more appealing
+                    //TODO: Add a gradient to the text make it more like the design
                     'Gold',
                     style: TextStyle(
                       fontSize: 12.sp,
@@ -195,13 +184,15 @@ class _ProfileState extends State<Profile> {
             color: AppColors.lightGrayColor,
           ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.only(left: 16, top: 6, bottom: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Icon(
-                  Icons.monitor_heart_outlined,
-                  color: AppColors.blackColor,
+                SvgPicture.asset(
+                  'assets/icons/heart.svg',
+                  width: 24,
+                  height: 16,
+                  color: Colors.black, // Optional: Change icon color
                 ),
                 Gap(10),
                 Text(
@@ -212,23 +203,22 @@ class _ProfileState extends State<Profile> {
               ],
             ),
           ),
-          CustomTabBar(
-            tabs: tabs,
-            selectedIndex: _selectedIndex,
-            onTabSelected: (index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
+          Container(
+            child: CustomTabBar(
+              tabs: ref.read(riverpodFollowingButton).tabs,
+              selectedIndex: ref.read(riverpodFollowingButton).selectedIndex,
+              onTabSelected: (index) {
+                ref
+                    .read(riverpodFollowingButton.notifier)
+                    .toggleSelectedIndex(index);
+              },
+            ),
           ),
-          _getTabContent(
-            isFollowing: isFollowing,
-            selectedIndex: _selectedIndex,
-          ),
+          _getTabContent(ref),
           // CustomCard(
           //   icon: Icons.person_add,
           //   title: "Follower only",
-          //   description: "Follow Tomas to see thier recent activities",
+          //   description: "Follow Lidiya Tesfaye to see thier recent activities",
           //   buttonText: "Follow Thomas",
           //   onPressed: () {
           //     print("Button Pressed!");
@@ -240,34 +230,82 @@ class _ProfileState extends State<Profile> {
   }
 }
 
+class CircularImageAvatar extends StatelessWidget {
+  const CircularImageAvatar({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 80.w,
+      height: 80.h,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.white, // Outer white border
+      ),
+      child: Container(
+        width: 80.w,
+        height: 80.h,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.orange, // Inner orange border
+        ),
+        child: CircleAvatar(
+          radius: 70.r,
+          backgroundColor: Colors.orange,
+          child: CircleAvatar(
+            radius: 60.r,
+            backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+            child: CircleAvatar(
+              radius: 58.r,
+              backgroundImage: AssetImage(
+                  'assets/images/lidiya-tesfaye.png'), // Replace with your image path
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 // Content for the selected tab
-Widget _getTabContent({
-  required int selectedIndex,
-  required bool isFollowing,
-}) {
-  if (!isFollowing) {
-    return CustomCard(
-      icon: Icons.person_add,
-      title: "Follower only",
-      description: "Follow Tomas to see thier recent activities",
-      buttonText: "Follow Thomas",
-      onPressed: () {
-        print("Button Pressed!");
-      },
+Widget _getTabContent(WidgetRef ref) {
+  if (!ref.watch(riverpodFollowingButton).isFollowing) {
+    return Column(
+      children: [
+        CustomCard(
+          icon: SvgPicture.asset(
+            'assets/icons/person.svg',
+            width: 24,
+            height: 24,
+            color: AppColors.primaryColor, // Optional: Change icon color
+          ),
+          title: "Follower only",
+          description: "Follow lidiya Tesfaye to see thier recent activities",
+          buttonText: "Follow Lidiya Tesfaye",
+          onPressed: () {
+            debugPrint("Button Pressed!");
+          },
+        ),
+      ],
     );
   } else {
-    switch (selectedIndex) {
+    switch (ref.read(riverpodFollowingButton).selectedIndex) {
       case 0:
         // return Flexible(child: WelcomePage());
-        return Flexible(
-          child: Text('Recent content'),
-        );
+        return Flexible(child: RecentPage());
       case 1:
-        return Text("Restaurant content");
+        return Flexible(child: ResturantPage());
       case 2:
-        return Text("Dishes content");
+        return Flexible(child: DishesPage());
       default:
-        return Container();
+        return Center(
+          child: Text(
+            'Select a tab to see content',
+            style: TextStyle(fontSize: 16.sp),
+          ),
+        );
     }
   }
 }

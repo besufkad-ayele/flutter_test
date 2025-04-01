@@ -15,7 +15,7 @@ class AppColors {
   static const Color warningColor = Color(0xFFFFFF00);
   static const Color infoColor = Color(0xFF0000FF);
 
-  static const Color lightGrayColor = Color(0x40d9d9d9);
+  static const Color lightGrayColor = Color.fromARGB(255, 217, 217, 217);
   static const Color lightGray2Color = Color(0x40d4d4d4);
   static const Color darkGrayColor = Color(0xFF666666);
   static const Color whiteColor = Color(0xFFFFFFFF);
@@ -25,6 +25,8 @@ class AppColors {
   static const Color textPrimaryColor = Color(0xFF000000);
   static const Color textSecondaryColor = Color(0xFF666666);
   static const Color textWhiteColor = Color(0xFFFFFFFF);
+
+  static const Color button_background = Color(0xFFff9800);
 }
 
 class AppStrings {

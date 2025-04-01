@@ -5,6 +5,7 @@ import 'package:chapter_one/core/constant/constants.dart';
 import 'package:chapter_one/core/shared/buttons/follow_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class BottomsheetContent extends StatelessWidget {
@@ -21,7 +22,12 @@ class BottomsheetContent extends StatelessWidget {
             style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w400),
           ),
           const SizedBox(height: 8),
-          const Icon(Icons.person, color: AppColors.primaryColor, size: 75),
+          SvgPicture.asset(
+            'assets/icons/cup-big.svg',
+            width: 75.w,
+            height: 75.h,
+            color: AppColors.primaryColor, // Optional: Change icon color
+          ),
           const SizedBox(height: 8),
           const Text(
             'Thomas',
@@ -94,15 +100,34 @@ class BottomsheetContent extends StatelessWidget {
             ],
           ),
           Gap(80.h),
-          FollowButton(
+          ElevatedButton(
             onPressed: () {
-              // Add your button action here
+              Navigator.pop(context);
             },
-            label: 'Custom Button',
-            color: Colors.transparent,
-            width: 100,
-            height: 40,
-          ),
+            style: ElevatedButton.styleFrom(
+              minimumSize: Size(315.w, 50.h),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+                side: BorderSide(
+                  color: AppColors.lightGrayColor,
+                  width: 1.r,
+                ),
+              ),
+              backgroundColor: Colors.white,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(''),
+                Text(
+                  "View Leaderboard",
+                  style: TextStyle(color: AppColors.blackColor),
+                ),
+                Icon(Icons.arrow_forward,
+                    color: AppColors.blackColor, size: 16.sp),
+              ],
+            ),
+          )
         ],
       ),
     );

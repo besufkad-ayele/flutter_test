@@ -1,8 +1,11 @@
+import 'package:chapter_one/Feature/profile/bottomsheet_content.dart';
+import 'package:chapter_one/core/Provider/riverpod.dart';
 import 'package:chapter_one/core/constant/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class FollowButton extends StatefulWidget {
+class FollowButton extends ConsumerWidget {
   final Color color;
   final double width;
   final double height;
@@ -10,54 +13,44 @@ class FollowButton extends StatefulWidget {
   final Function onPressed;
   final Color? borderColor;
 
-  const FollowButton({
-    super.key,
-    required this.color,
-    required this.width,
-    required this.height,
-    required this.label,
-    required this.onPressed,
-    this.borderColor
-  });
+  FollowButton(
+      {super.key,
+      required this.color,
+      required this.width,
+      required this.height,
+      required this.label,
+      required this.onPressed,
+      this.borderColor});
 
   @override
-  State<FollowButton> createState() => _FollowButtonState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    bool isLoading = ref.watch(riverpodFollowingButton).isLoading;
+    bool isFollowing = ref.watch(riverpodFollowingButton).isFollowing;
+    void handlePress() {
+      ref.read(riverpodFollowingButton).toggleIsFollowing();
+      if (!isFollowing) {
+        showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return BottomsheetContent();
+          },
+        );
+      }
+    }
 
-class _FollowButtonState extends State<FollowButton> {
-  bool isLoading = false;
-  bool isFollowing = false;
-
-  void handlePress() async {
-    setState(() {
-      isLoading = true;
-    });
-
-    await Future.delayed(Duration(seconds: 1));
-
-    setState(() {
-      isLoading = false;
-      isFollowing = true;
-    });
-
-    widget.onPressed();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: isLoading ? null : handlePress,
+      onPressed: handlePress,
       style: ElevatedButton.styleFrom(
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12).r,
           side: BorderSide(
-            color: isFollowing ? Colors.grey : AppColors.borderColor,
+            color: isFollowing ? Color(0xFFD4D4D4) : AppColors.borderColor,
             width: 1.5.r,
           ),
         ),
-        minimumSize: Size(widget.width, widget.height),
-        backgroundColor: isFollowing ? AppColors.whiteColor : widget.color,
+        minimumSize: Size(width, height),
+        backgroundColor: isFollowing ? AppColors.whiteColor : color,
       ),
       child: isLoading
           ? SizedBox(
@@ -78,7 +71,7 @@ class _FollowButtonState extends State<FollowButton> {
               ),
             )
           : Text(
-              isFollowing ? "Following" : widget.label,
+              isFollowing ? "Following" : label,
               style: TextStyle(
                 color: AppColors.blackColor,
                 fontWeight: FontWeight.w700,

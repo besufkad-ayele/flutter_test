@@ -1,11 +1,11 @@
-import 'package:chapter_one/Feature/onBoarding/WelcomePage.dart';
 import 'package:chapter_one/core/constant/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class CustomCard extends StatelessWidget {
-  final IconData icon;
+  final SvgPicture icon;
   final String title;
   final String description;
   final String buttonText;
@@ -33,7 +33,7 @@ class CustomCard extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(icon, size: 40, color: Colors.orange), // Orange icon
+              icon, // Orange icon
               const SizedBox(height: 10),
               Text(title,
                   style: const TextStyle(

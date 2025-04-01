@@ -1,11 +1,12 @@
 import 'package:chapter_one/Feature/onBoarding/WelcomePage.dart';
 import 'package:chapter_one/core/constant/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ProviderScope(child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             fontFamily: GoogleFonts.poppins().fontFamily,
             colorScheme: ColorScheme.fromSeed(
-                seedColor: const Color.fromARGB(229, 105, 28, 238),
+                seedColor: AppColors.backgroundColor,
                 surface: AppColors.backgroundColor),
             useMaterial3: true,
           ),

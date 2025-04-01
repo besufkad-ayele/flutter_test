@@ -1,7 +1,8 @@
 import 'package:chapter_one/core/constant/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CustomTabBar extends StatelessWidget {
+class CustomTabBar extends ConsumerWidget {
   final List<String> tabs;
   final int selectedIndex;
   final Function(int) onTabSelected;
@@ -14,7 +15,7 @@ class CustomTabBar extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16),
       padding: const EdgeInsets.all(5),
@@ -41,7 +42,6 @@ class CustomTabBar extends StatelessWidget {
     );
   }
 
-  /// 📌 Single Tab Widget
   Widget _buildTab(int index) {
     bool isSelected = selectedIndex == index;
 
