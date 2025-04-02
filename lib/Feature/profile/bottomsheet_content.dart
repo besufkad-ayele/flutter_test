@@ -14,6 +14,13 @@ class BottomsheetContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        color: AppColors.whiteColor,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16.r),
+          topRight: Radius.circular(16.r),
+        ),
+      ),
       padding: EdgeInsets.all(24).r,
       child: Column(
         children: [
@@ -38,17 +45,20 @@ class BottomsheetContent extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Expanded(
                 child: Column(
                   children: [
                     Container(
-                        padding: EdgeInsets.all(10).r,
-                        child: Text(
-                          '#19',
-                          textAlign: TextAlign.center,
-                        )),
+                      padding: EdgeInsets.all(10).r,
+                      child: Text(
+                        '#19',
+                        style: TextStyle(
+                            fontSize: 12.sp, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                     const Text(
                       'Rank by Follwers',
                       textAlign: TextAlign.center,
@@ -59,17 +69,24 @@ class BottomsheetContent extends StatelessWidget {
                 ),
               ),
               VerticalDivider(
-                color: const Color.fromARGB(215, 2, 5, 0),
+                color: const Color.fromARGB(214, 252, 53, 8),
+                thickness: 1,
+                width: 20.w,
+                indent: 10.h,
+                endIndent: 10.h,
               ),
               Expanded(
                 child: Column(
                   children: [
                     Container(
-                        padding: EdgeInsets.all(10).r,
-                        child: Text(
-                          '#19',
-                          textAlign: TextAlign.center,
-                        )),
+                      padding: EdgeInsets.all(10).r,
+                      child: Text(
+                        '#19',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 12.sp, fontWeight: FontWeight.bold),
+                      ),
+                    ),
                     const Text(
                       'Rank by Invitation',
                       textAlign: TextAlign.center,
@@ -79,15 +96,26 @@ class BottomsheetContent extends StatelessWidget {
                   ],
                 ),
               ),
+              VerticalDivider(
+                // Add this VerticalDivider
+                color: const Color.fromARGB(214, 252, 53, 8),
+                thickness: 1,
+                width: 20.w,
+                indent: 10.h,
+                endIndent: 10.h,
+              ),
               Expanded(
                 child: Column(
                   children: [
                     Container(
-                        padding: EdgeInsets.all(10).r,
-                        child: Text(
-                          '#19',
-                          textAlign: TextAlign.center,
-                        )),
+                      padding: EdgeInsets.all(10).r,
+                      child: Text(
+                        '#19',
+                        style: TextStyle(
+                            fontSize: 12.sp, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                     const Text(
                       'Rank by Reviews',
                       textAlign: TextAlign.center,

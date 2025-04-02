@@ -45,7 +45,9 @@ class FollowButton extends ConsumerWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12).r,
           side: BorderSide(
-            color: isFollowing ? Color(0xFFD4D4D4) : AppColors.borderColor,
+            color: isFollowing
+                ? AppColors.lightGrayBorderColor
+                : AppColors.borderColor,
             width: 1.5.r,
           ),
         ),

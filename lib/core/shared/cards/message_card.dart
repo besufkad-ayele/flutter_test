@@ -49,8 +49,10 @@ class CustomCard extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primaryColor,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                    minimumSize: const Size(double.infinity, 40), // Full width
+                        borderRadius: BorderRadius.circular(15.r),
+                        side: const BorderSide(
+                            color: AppColors.button_background)), // Red border
+                    minimumSize: Size(double.infinity, 45.h), // Full width
                   ),
                   child: Text(
                     buttonText,

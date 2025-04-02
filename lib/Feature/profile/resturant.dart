@@ -1,15 +1,21 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:chapter_one/core/Provider/riverpod.dart';
 import 'package:chapter_one/core/constant/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
-class ResturantPage extends StatelessWidget {
+class ResturantPage extends ConsumerWidget {
   const ResturantPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final images = ref.watch(riverpodFollowingButton).foodImages;
+
     return SingleChildScrollView(
         child: Container(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
@@ -35,13 +41,14 @@ class ResturantPage extends StatelessWidget {
   }
 }
 
-class ResturantCard extends StatelessWidget {
+class ResturantCard extends ConsumerWidget {
   const ResturantCard({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final images = ref.watch(riverpodFollowingButton).foodImages;
     return Container(
       padding: EdgeInsets.all(12.h),
       width: 320.w,
@@ -54,7 +61,7 @@ class ResturantCard extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: const Color.fromARGB(255, 255, 255, 255).withOpacity(0.1),
-            blurRadius: 4,
+            blurRadius: 12,
             offset: Offset(0, 2),
           ),
         ],
@@ -72,19 +79,78 @@ class ResturantCard extends StatelessWidget {
             ),
             child: Container(
               height: 150.h,
-              child: PageView(
+              width: 320.w,
+              child: Stack(
                 children: [
-                  Image.asset(
-                    'assets/images/food1.png',
-                    fit: BoxFit.cover,
+                  CarouselSlider.builder(
+                    options: CarouselOptions(
+                      height: 150.h,
+                      autoPlay: true,
+                      autoPlayInterval: const Duration(seconds: 3),
+                      autoPlayAnimationDuration:
+                          const Duration(milliseconds: 800),
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      enlargeCenterPage: true,
+                      viewportFraction: 1.0,
+                      onPageChanged: (index, reason) {
+                        // Handle page change if needed
+                      },
+                    ),
+                    itemCount: images.length,
+                    itemBuilder: (context, index, realIndex) {
+                      return Container(
+                        width: 320.w,
+                        height: 150.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(25.r),
+                            topRight: Radius.circular(25.r),
+                          ),
+                          image: DecorationImage(
+                            image: AssetImage(images[index]),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                  Image.asset(
-                    'assets/images/food2.jpg',
-                    fit: BoxFit.cover,
+                  Positioned(
+                    bottom: 10.h,
+                    left: 0,
+                    right: 0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        images.length,
+                        (index) => Container(
+                          width: 8.w,
+                          height: 8.h,
+                          margin: EdgeInsets.symmetric(horizontal: 4.w),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white.withOpacity(0.8),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                  Image.asset(
-                    'assets/images/food3.jpg',
-                    fit: BoxFit.cover,
+                  Positioned(
+                    top: 10.h,
+                    right: 11.w,
+                    child: Container(
+                      width: 30.w,
+                      height: 30.h,
+                      padding: EdgeInsets.all(4).r,
+                      decoration: BoxDecoration(
+                        color: AppColors.buttonColor,
+                        borderRadius: BorderRadius.circular(12.r),
+                      ),
+                      child: SvgPicture.asset(
+                        'assets/icons/check.svg',
+                        height: 19.h,
+                        width: 19.w,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -195,15 +261,24 @@ class ResturantCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Row(
               children: [
-                Icon(
-                  Icons.location_on,
-                  size: 16.sp,
-                  color: Colors.grey[600],
-                ),
+                SvgPicture.asset('assets/icons/location.svg',
+                    height: 16.h, width: 16.w, color: AppColors.blackColor),
+                Gap(4.w),
                 Text(
-                  '123 Main Street, City, Country',
+                  'Gerji Condominum',
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 12,
+                    color: Colors.grey[600],
+                  ),
+                ),
+                Gap(8.w),
+                SvgPicture.asset('assets/icons/location.svg',
+                    height: 16.h, width: 16.w, color: AppColors.blackColor),
+                Gap(4.w),
+                Text(
+                  'Near Tadele Garage',
+                  style: TextStyle(
+                    fontSize: 12,
                     color: Colors.grey[600],
                   ),
                 ),

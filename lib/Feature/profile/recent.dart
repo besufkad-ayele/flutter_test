@@ -9,36 +9,34 @@ class RecentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-          width: double.infinity, // Ensures the container takes the full width
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment:
-                CrossAxisAlignment.start, // Aligns children to the left
-            children: [
-              Text(
-                '2 Reviewed Restaurants',
-                style: TextStyle(
-                  fontSize: 10.sp,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.darkGrayColor,
-                ),
-                textAlign: TextAlign.left,
+    return SingleChildScrollView(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+        width: double.infinity, // Ensures the container takes the full width
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment:
+              CrossAxisAlignment.start, // Aligns children to the left
+          children: [
+            Text(
+              '2 Reviewed Restaurants',
+              style: TextStyle(
+                fontSize: 10.sp,
+                fontWeight: FontWeight.w600,
+                color: AppColors.darkGrayColor,
               ),
-              Gap(12.h),
-              ReviewCard(),
-              Gap(12.h),
-              Divider(
-                color: AppColors.lightGrayColor,
-                thickness: 1,
-              ),
-              Gap(12.h),
-              ReviewCard()
-            ],
-          ),
+              textAlign: TextAlign.left,
+            ),
+            Gap(12.h),
+            ReviewCard(),
+            Gap(12.h),
+            Divider(
+              color: AppColors.lightGrayColor,
+              thickness: 1,
+            ),
+            Gap(12.h),
+            ReviewCard()
+          ],
         ),
       ),
     );
@@ -107,11 +105,16 @@ class ReviewCard extends StatelessWidget {
                       'Lidya Tesfaye',
                       style: TextStyle(
                         fontSize: 10.sp,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.darkGrayColor,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.blackColor,
                       ),
                     ),
                     Gap(10.w),
+                    Divider(
+                      color: const Color.fromARGB(162, 124, 27, 27),
+                      thickness: 10,
+                      height: 20.h,
+                    ),
                     SvgPicture.asset(
                       'assets/icons/review.svg',
                       width: 12.w,
@@ -134,15 +137,15 @@ class ReviewCard extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 10.sp,
                             fontWeight: FontWeight.w400,
-                            color: AppColors.darkGrayColor,
+                            color: AppColors.blackColor,
                           ),
                         ),
                         Text(
                           'Elfign Restaurant ',
                           style: TextStyle(
                             fontSize: 10.sp,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.darkGrayColor,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.blackColor,
                           ),
                         ),
                       ],
@@ -162,24 +165,27 @@ class ReviewCard extends StatelessWidget {
           child: Row(
             children: List.generate(5, (index) {
               return Container(
-                margin: EdgeInsets.all(2.r),
-                padding: EdgeInsets.all(5.r),
-                decoration: BoxDecoration(
-                  color: index < 4 ? AppColors.primaryColor : Colors.white,
-                  border: Border.all(
-                    color: index < 4
-                        ? Colors.transparent
-                        : AppColors.darkGrayColor,
+                  margin: EdgeInsets.all(2.r),
+                  padding: EdgeInsets.all(5.r),
+                  decoration: BoxDecoration(
+                    color: index < 4 ? AppColors.primaryColor : Colors.white,
+                    border: Border.all(
+                      color: index < 4
+                          ? Colors.transparent
+                          : AppColors.darkGrayColor,
+                    ),
+                    shape: BoxShape.rectangle,
+                    borderRadius:
+                        BorderRadius.circular(7.r), // 2px rounded corners
                   ),
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-                child: Icon(
-                  Icons.star,
-                  color: index < 4 ? Colors.white : AppColors.lightGrayColor,
-                  size: 20.sp,
-                ),
-              );
+                  child: SvgPicture.asset(
+                    'assets/icons/star.svg',
+                    width: 12.w,
+                    height: 12.h,
+                    color: index < 4
+                        ? AppColors.whiteColor
+                        : AppColors.lightGrayBorderColor,
+                  ));
             }),
           ),
         ),

@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:chapter_one/Feature/onBoarding/WelcomePage.dart';
 import 'package:chapter_one/Feature/profile/bottomsheet_content.dart';
 import 'package:chapter_one/Feature/profile/dishes.dart';
 import 'package:chapter_one/Feature/profile/recent.dart';
 import 'package:chapter_one/Feature/profile/resturant.dart';
 import 'package:chapter_one/core/Provider/riverpod.dart';
+import 'package:chapter_one/core/constant/appgradiant.dart';
 import 'package:chapter_one/core/constant/constants.dart';
 import 'package:chapter_one/core/shared/buttons/custom_tabBar.dart';
 import 'package:chapter_one/core/shared/buttons/follow_button.dart';
@@ -37,20 +37,26 @@ class Profile extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          CircleAvatar(
-            radius: 33.r,
-            backgroundColor: AppColors.primaryColor,
-            child: CircleAvatar(
-              radius: 31.r,
-              backgroundColor: Colors.white,
+          Container(
+            width: 80.r,
+            height: 80.r,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: AppGradients.platinumGradiant, // Platinum gradient ring
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(3.r), // Adjust padding for ring thickness
               child: CircleAvatar(
-                radius: 30.r,
-                backgroundImage:
-                    const AssetImage('assets/images/lidiya-tesfaye.png'),
+                radius: 37.r,
+                backgroundColor: Colors.white, // Inner white border
+                child: CircleAvatar(
+                  radius: 35.r,
+                  backgroundImage:
+                      const AssetImage('assets/images/lidiya-tesfaye.png'),
+                ),
               ),
             ),
           ),
-          // CircularImageAvatar(),
           SizedBox(height: 10.h),
           // Membership description
           Text(
@@ -153,18 +159,25 @@ class Profile extends ConsumerWidget {
               ),
               Column(
                 children: [
-                  Text(
-                    //TODO: Add a gradient to the text make it more like the design
-                    'Gold',
-                    style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w600,
-                      foreground: Paint()
-                        ..shader = LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Color(0xFFFFC657), Color(0xFFFF9800)],
-                        ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)),
+                  ShaderMask(
+                    shaderCallback: (bounds) {
+                      return AppGradients.platinumGradiant.createShader(
+                        Rect.fromLTWH(
+                          0,
+                          0,
+                          bounds.width,
+                          bounds.height,
+                        ),
+                      );
+                    },
+                    child: Text(
+                      //TODO: Add a gradient to the text make it more like the design
+                      'Platinum',
+                      style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.whiteColor,
+                      ),
                     ),
                   ),
                   Text('Member badge',
@@ -176,25 +189,23 @@ class Profile extends ConsumerWidget {
               ),
             ],
           ),
-          Gap(10.h),
+          Gap(20.h),
           Divider(
             thickness: 5.r,
-            indent: 2.w,
-            endIndent: 2.w,
             color: AppColors.lightGrayColor,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 16, top: 6, bottom: 10),
+            padding: EdgeInsets.only(left: 25, top: 6, bottom: 10).w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SvgPicture.asset(
                   'assets/icons/heart.svg',
                   width: 24,
-                  height: 16,
+                  height: 24,
                   color: Colors.black, // Optional: Change icon color
                 ),
-                Gap(10),
+                Gap(15.h),
                 Text(
                   "Actvities",
                   style:
@@ -214,7 +225,7 @@ class Profile extends ConsumerWidget {
               },
             ),
           ),
-          _getTabContent(ref),
+          _getTabContent(context, ref),
           // CustomCard(
           //   icon: Icons.person_add,
           //   title: "Follower only",
@@ -270,7 +281,7 @@ class CircularImageAvatar extends StatelessWidget {
 }
 
 // Content for the selected tab
-Widget _getTabContent(WidgetRef ref) {
+Widget _getTabContent(BuildContext context, WidgetRef ref) {
   if (!ref.watch(riverpodFollowingButton).isFollowing) {
     return Column(
       children: [
@@ -285,7 +296,15 @@ Widget _getTabContent(WidgetRef ref) {
           description: "Follow lidiya Tesfaye to see thier recent activities",
           buttonText: "Follow Lidiya Tesfaye",
           onPressed: () {
-            debugPrint("Button Pressed!");
+            if (!ref.watch(riverpodFollowingButton).isFollowing) {
+              showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return BottomsheetContent();
+                },
+              );
+            }
+            ref.read(riverpodFollowingButton.notifier).toggleIsFollowing();
           },
         ),
       ],

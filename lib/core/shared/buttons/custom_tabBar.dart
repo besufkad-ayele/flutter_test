@@ -1,6 +1,7 @@
 import 'package:chapter_one/core/constant/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTabBar extends ConsumerWidget {
   final List<String> tabs;
@@ -17,27 +18,32 @@ class CustomTabBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      padding: const EdgeInsets.all(5),
+      width: 310.w,
+      height: 35.h,
+      margin: EdgeInsets.symmetric(horizontal: 25.h),
+      padding: EdgeInsets.all(2.h),
       decoration: BoxDecoration(
         border: null,
         color: AppColors.lightGrayColor,
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(10.h),
       ),
       child: Row(
-        children: List.generate(tabs.length * 2 - 1, (index) {
-          if (index.isOdd) {
-            return const VerticalDivider(
-              color: Colors.grey,
-              thickness: 10,
-              width: 10,
-              indent: 10,
-              endIndent: 10,
-            );
-          } else {
-            return Expanded(child: _buildTab(index ~/ 2));
-          }
-        }),
+        children: List.generate(
+          tabs.length * 2 - 1,
+          (index) {
+            if (index.isOdd) {
+              return VerticalDivider(
+                color: AppColors.darkGrayColor,
+                thickness: 1,
+                width: 1,
+                indent: 10.r,
+                endIndent: 10.r,
+              );
+            } else {
+              return Expanded(child: _buildTab(index ~/ 2));
+            }
+          },
+        ),
       ),
     );
   }
@@ -48,20 +54,21 @@ class CustomTabBar extends ConsumerWidget {
     return GestureDetector(
       onTap: () => onTabSelected(index),
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        // padding:  EdgeInsets.symmetric(vertical: 10.h),
         decoration: BoxDecoration(
           color: isSelected ? Colors.white : Colors.transparent,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(10.r),
           border: isSelected
-              ? Border.all(color: Colors.transparent, width: 1)
+              ? Border.all(color: Colors.transparent, width: 1.w)
               : null,
         ),
         child: Center(
           child: Text(
             tabs[index],
-            style: const TextStyle(
+            style: TextStyle(
+              fontSize: 10.sp,
               color: Colors.black,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),
