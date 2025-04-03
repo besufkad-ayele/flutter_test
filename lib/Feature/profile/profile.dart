@@ -195,7 +195,7 @@ class Profile extends ConsumerWidget {
             color: AppColors.lightGrayColor,
           ),
           Padding(
-            padding: EdgeInsets.only(left: 25, top: 6, bottom: 10).w,
+            padding: EdgeInsets.only(left: 25, top: 12.h, bottom: 12.h).w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -209,7 +209,7 @@ class Profile extends ConsumerWidget {
                 Text(
                   "Actvities",
                   style:
-                      TextStyle(fontWeight: FontWeight.w600, fontSize: 12.sp),
+                      TextStyle(fontWeight: FontWeight.w700, fontSize: 12.sp),
                 )
               ],
             ),

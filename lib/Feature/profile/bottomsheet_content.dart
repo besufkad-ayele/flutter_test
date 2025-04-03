@@ -1,8 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:chapter_one/Feature/onBoarding/WelcomePage.dart';
 import 'package:chapter_one/core/constant/constants.dart';
-import 'package:chapter_one/core/shared/buttons/follow_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';

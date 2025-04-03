@@ -18,14 +18,17 @@ class RecentPage extends StatelessWidget {
           crossAxisAlignment:
               CrossAxisAlignment.start, // Aligns children to the left
           children: [
-            Text(
-              '2 Reviewed Restaurants',
-              style: TextStyle(
-                fontSize: 10.sp,
-                fontWeight: FontWeight.w600,
-                color: AppColors.darkGrayColor,
+            Padding(
+              padding: EdgeInsets.only(left: 25.w),
+              child: Text(
+                '2 Reviewed Restaurants',
+                style: TextStyle(
+                  fontSize: 10.sp,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.darkGrayColor,
+                ),
+                textAlign: TextAlign.left,
               ),
-              textAlign: TextAlign.left,
             ),
             Gap(12.h),
             ReviewCard(),
@@ -99,7 +102,7 @@ class ReviewCard extends StatelessWidget {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       'Lidya Tesfaye',
@@ -109,11 +112,14 @@ class ReviewCard extends StatelessWidget {
                         color: AppColors.blackColor,
                       ),
                     ),
-                    Gap(10.w),
-                    Divider(
-                      color: const Color.fromARGB(162, 124, 27, 27),
-                      thickness: 10,
-                      height: 20.h,
+                    Container(
+                      width: 3.w,
+                      height: 3.h,
+                      margin: EdgeInsets.only(right: 5.w, left: 5.w),
+                      decoration: BoxDecoration(
+                        color: AppColors.lightGrayColor,
+                        borderRadius: BorderRadius.circular(5.r),
+                      ),
                     ),
                     SvgPicture.asset(
                       'assets/icons/review.svg',
@@ -194,8 +200,7 @@ class ReviewCard extends StatelessWidget {
           'The food was delicious and well-prepared, with a perfect balance of flavors.',
           style: TextStyle(
             fontSize: 12.sp,
-            fontWeight: FontWeight.w400,
-            color: AppColors.darkGrayColor,
+            color: AppColors.blackColor,
           ),
         ),
         Gap(15.h),

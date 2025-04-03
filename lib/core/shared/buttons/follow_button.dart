@@ -75,7 +75,9 @@ class FollowButton extends ConsumerWidget {
           : Text(
               isFollowing ? "Following" : label,
               style: TextStyle(
-                color: AppColors.blackColor,
+                color: isFollowing
+                    ? AppColors.blackColor
+                    : AppColors.textWhiteColor,
                 fontWeight: FontWeight.w700,
                 fontSize: 12.r,
               ),

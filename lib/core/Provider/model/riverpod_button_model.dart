@@ -1,4 +1,3 @@
-import 'package:chapter_one/Feature/profile/bottomsheet_content.dart';
 import 'package:flutter/material.dart';
 
 class RiverpodButtonState extends ChangeNotifier {
@@ -13,6 +12,9 @@ class RiverpodButtonState extends ChangeNotifier {
     "assets/images/food1.png",
     "assets/images/food2.jpg",
   ];
+      int currentRealIndex = 0;
+
+
   void toggleSelectedIndex(int index) {
     selectedIndex = index;
     notifyListeners();

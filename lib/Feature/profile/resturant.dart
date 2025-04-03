@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:ffi';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:chapter_one/core/Provider/riverpod.dart';
 import 'package:chapter_one/core/constant/constants.dart';
@@ -22,14 +24,17 @@ class ResturantPage extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            '2 Reviewed Restaurants',
-            style: TextStyle(
-              fontSize: 10.sp,
-              fontWeight: FontWeight.w600,
-              color: AppColors.darkGrayColor,
+          Padding(
+            padding: const EdgeInsets.only(left: 30.0, bottom: 20, top: 20).r,
+            child: Text(
+              '2 Reviewed Restaurants',
+              style: TextStyle(
+                fontSize: 10.sp,
+                fontWeight: FontWeight.w600,
+                color: AppColors.darkGrayColor,
+              ),
+              textAlign: TextAlign.left,
             ),
-            textAlign: TextAlign.left,
           ),
           Gap(12.h),
           ResturantCard(),
@@ -50,7 +55,7 @@ class ResturantCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final images = ref.watch(riverpodFollowingButton).foodImages;
     return Container(
-      padding: EdgeInsets.all(12.h),
+      padding: EdgeInsets.all(5.h),
       width: 320.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25.r),
@@ -88,9 +93,9 @@ class ResturantCard extends ConsumerWidget {
                       autoPlay: true,
                       autoPlayInterval: const Duration(seconds: 3),
                       autoPlayAnimationDuration:
-                          const Duration(milliseconds: 800),
+                          const Duration(milliseconds: 1),
                       autoPlayCurve: Curves.fastOutSlowIn,
-                      enlargeCenterPage: true,
+                      enlargeCenterPage: false,
                       viewportFraction: 1.0,
                       onPageChanged: (index, reason) {
                         // Handle page change if needed
@@ -98,14 +103,16 @@ class ResturantCard extends ConsumerWidget {
                     ),
                     itemCount: images.length,
                     itemBuilder: (context, index, realIndex) {
+                      ref.watch(riverpodFollowingButton).currentRealIndex =
+                          realIndex;
                       return Container(
                         width: 320.w,
                         height: 150.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(25.r),
-                            topRight: Radius.circular(25.r),
-                          ),
+                              // topLeft: Radius.circular(25.r),
+                              // topRight: Radius.circular(25.r),
+                              ),
                           image: DecorationImage(
                             image: AssetImage(images[index]),
                             fit: BoxFit.cover,
@@ -118,17 +125,34 @@ class ResturantCard extends ConsumerWidget {
                     bottom: 10.h,
                     left: 0,
                     right: 0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(
-                        images.length,
-                        (index) => Container(
-                          width: 8.w,
-                          height: 8.h,
-                          margin: EdgeInsets.symmetric(horizontal: 4.w),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white.withOpacity(0.8),
+                    child: Center(
+                      child: Container(
+                        margin: EdgeInsets.symmetric(vertical: 4.h),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 4.h, horizontal: 8.w),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(12.r),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(
+                            images.length,
+                            (index) => Container(
+                              width: 8.w,
+                              height: 8.h,
+                              margin: EdgeInsets.symmetric(horizontal: 4.w),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: index ==
+                                        ref
+                                            .watch(riverpodFollowingButton)
+                                            .currentRealIndex
+                                    ? Colors.white
+                                    : Colors.white.withOpacity(0.5),
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -138,12 +162,16 @@ class ResturantCard extends ConsumerWidget {
                     top: 10.h,
                     right: 11.w,
                     child: Container(
-                      width: 30.w,
-                      height: 30.h,
-                      padding: EdgeInsets.all(4).r,
+                      width: 35.w,
+                      height: 35.h,
+                      padding: EdgeInsets.all(8).r,
                       decoration: BoxDecoration(
-                        color: AppColors.buttonColor,
-                        borderRadius: BorderRadius.circular(12.r),
+                        color: AppColors.button_background.withOpacity(0.75),
+                        border: Border.all(
+                          color: AppColors.primaryColor.withOpacity(0.5),
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(25.r),
                       ),
                       child: SvgPicture.asset(
                         'assets/icons/check.svg',

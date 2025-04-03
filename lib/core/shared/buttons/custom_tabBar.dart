@@ -32,12 +32,15 @@ class CustomTabBar extends ConsumerWidget {
           tabs.length * 2 - 1,
           (index) {
             if (index.isOdd) {
-              return VerticalDivider(
-                color: AppColors.darkGrayColor,
-                thickness: 1,
-                width: 1,
-                indent: 10.r,
-                endIndent: 10.r,
+            return Container(
+                margin: EdgeInsets.symmetric(horizontal: 5.w),
+                child: VerticalDivider(
+                  color: AppColors.darkGrayColor,
+                  thickness: 1,
+                  width: 1,
+                  indent: 10.r,
+                  endIndent: 10.r,
+                ),
               );
             } else {
               return Expanded(child: _buildTab(index ~/ 2));

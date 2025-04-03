@@ -55,12 +55,21 @@ class AppGradients {
   );
   static const LinearGradient platinumGradiant = LinearGradient(
     colors: [
-      Color(0xFF51a9ff),
       Color(0xff487dff),
+      Color(0xFF51a9ff),
     ],
     begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
+    end: Alignment.center,
   );
+  static const LinearGradient BorderGradiant = LinearGradient(
+    colors: [
+      Color(0xfffbce0f),
+      Color(0xFFff9800),
+    ],
+    begin: Alignment.topCenter,
+    end: Alignment.center,
+  );
+  
   static const LinearGradient blackGradiant = LinearGradient(
     colors: [
       Color.fromARGB(255, 246, 217, 217),

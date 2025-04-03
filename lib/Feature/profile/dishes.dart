@@ -1,6 +1,8 @@
+import 'package:chapter_one/core/constant/appgradiant.dart';
 import 'package:chapter_one/core/constant/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class DishesPage extends StatelessWidget {
@@ -10,16 +12,23 @@ class DishesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Gap(20.h),
         Padding(
-          padding: EdgeInsets.all(16.0).r,
-          child: const Align(
+          padding: EdgeInsets.only(left: 20.0).r,
+          child: Align(
             alignment: Alignment.topLeft,
             child: Text(
-              '3 Saved Dishes',
-              textAlign: TextAlign.start,
+              '4 Saved Dishes',
+              style: TextStyle(
+                fontSize: 10.sp,
+                fontWeight: FontWeight.w600,
+                color: AppColors.darkGrayColor,
+              ),
+              textAlign: TextAlign.left,
             ),
           ),
         ),
+        Gap(20.h),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
@@ -27,13 +36,14 @@ class DishesPage extends StatelessWidget {
               return Container(
                 width: 140,
                 height: 190,
-                margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                margin: const EdgeInsets.symmetric(horizontal: 10.0).r,
                 decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.primaryColor),
-                  borderRadius: BorderRadius.circular(8.0),
+                  border:
+                      Border.all(color: AppColors.borderColor.withOpacity(0.5)),
+                  borderRadius: BorderRadius.circular(20.0),
                 ),
                 child: Container(
-                  margin: const EdgeInsets.all(2.0),
+                  margin: const EdgeInsets.all(4.0),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     image: DecorationImage(
@@ -46,21 +56,28 @@ class DishesPage extends StatelessWidget {
                       ),
                       fit: BoxFit.cover,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(15.0),
                   ),
                   child: Stack(
                     children: [
-                      const Positioned(
+                      Positioned(
                         top: 8,
                         left: 8,
-                        child: Icon(Icons.fastfood, color: Colors.blueAccent),
-                        //here you can add your icon
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.asset(
+                            'assets/images/goat.jpg',
+                            fit: BoxFit.cover,
+                            width: 15.w,
+                            height: 15.h,
+                          ),
+                        ),
+
                         // SvgPicture.asset(
-                        //   'assets/icons/person.svg',
+                        //   'assets/images/goat.jpg',
                         //   width: 24,
                         //   height: 24,
-                        //   color: AppColors
-                        //       .primaryColor, // Optional: Change icon color
+                        //   color: AppColors.primaryColor,
                         // ),
                       ),
                       Positioned(
@@ -75,27 +92,25 @@ class DishesPage extends StatelessWidget {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12,
-                                  fontWeight: FontWeight.w600),
+                                  fontWeight: FontWeight.w700),
                             ),
                             Text(
                               'The Goat Cafe',
                               style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
+                                  fontSize: 10.sp, color: Colors.white),
                             ),
                             Row(
                               children: [
                                 Text(
                                   '250',
                                   style: TextStyle(
-                                      fontSize: 14,
+                                      fontSize: 20.sp,
                                       color: Colors.white,
-                                      fontWeight: FontWeight.w600),
+                                      fontWeight: FontWeight.w700),
                                 ),
-                                Gap(12),
+                                Gap(10.w),
                                 Container(
-                                  padding: EdgeInsets.all(5).r,
+                                  padding: EdgeInsets.all(4).r,
                                   decoration: BoxDecoration(
                                     color: AppColors.primaryColor,
                                     border: Border.all(
@@ -107,7 +122,8 @@ class DishesPage extends StatelessWidget {
                                   child: Text(
                                     'BIRR',
                                     style: TextStyle(
-                                      fontSize: 7.sp,
+                                      fontSize: 10.sp,
+                                      fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
                                   ),
