@@ -24,7 +24,7 @@ class CustomTabBar extends ConsumerWidget {
       padding: EdgeInsets.all(2.h),
       decoration: BoxDecoration(
         border: null,
-        color: AppColors.lightGrayColor,
+        color: AppColors.graylightopacity40,
         borderRadius: BorderRadius.circular(10.h),
       ),
       child: Row(
@@ -32,10 +32,10 @@ class CustomTabBar extends ConsumerWidget {
           tabs.length * 2 - 1,
           (index) {
             if (index.isOdd) {
-            return Container(
+              return Container(
                 margin: EdgeInsets.symmetric(horizontal: 5.w),
                 child: VerticalDivider(
-                  color: AppColors.darkGrayColor,
+                  color: AppColors.gray,
                   thickness: 1,
                   width: 1,
                   indent: 10.r,

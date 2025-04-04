@@ -14,7 +14,11 @@ class RiverpodButtonState extends ChangeNotifier {
   ];
       int currentRealIndex = 0;
 
-
+  void updateCurrentIndex (int index
+  ) {
+    currentRealIndex = index;
+    notifyListeners();
+  }
   void toggleSelectedIndex(int index) {
     selectedIndex = index;
     notifyListeners();

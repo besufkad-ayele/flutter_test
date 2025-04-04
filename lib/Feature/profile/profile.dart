@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:chapter_one/Feature/profile/bottomsheet_content.dart';
-import 'package:chapter_one/Feature/profile/dishes.dart';
-import 'package:chapter_one/Feature/profile/recent.dart';
-import 'package:chapter_one/Feature/profile/resturant.dart';
+import 'package:chapter_one/core/shared/bottomsheet/bottomsheet_content.dart';
+import 'package:chapter_one/Feature/profile/tabs/dishes.dart';
+import 'package:chapter_one/Feature/profile/tabs/recent.dart';
+import 'package:chapter_one/Feature/profile/tabs/resturant.dart';
 import 'package:chapter_one/core/Provider/riverpod.dart';
 import 'package:chapter_one/core/constant/appgradiant.dart';
 import 'package:chapter_one/core/constant/constants.dart';
@@ -23,6 +23,8 @@ class Profile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         title: Text(
           'Lidiya Tesfaye',
           style: TextStyle(
@@ -31,211 +33,215 @@ class Profile extends ConsumerWidget {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.transparent, // Set a fixed background color
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            width: 80.r,
-            height: 80.r,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: AppGradients.platinumGradiant, // Platinum gradient ring
-            ),
-            child: Padding(
-              padding: EdgeInsets.all(3.r), // Adjust padding for ring thickness
-              child: CircleAvatar(
-                radius: 37.r,
-                backgroundColor: Colors.white, // Inner white border
-                child: CircleAvatar(
-                  radius: 35.r,
-                  backgroundImage:
-                      const AssetImage('assets/images/lidiya-tesfaye.png'),
-                ),
-              ),
-            ),
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: MediaQuery.of(context).size.height,
           ),
-          SizedBox(height: 10.h),
-          // Membership description
-          Text(
-            'Member since February 2025s',
-            style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w400),
-          ),
-          Gap(20.h),
-          // Row with button, Instagram icon, and champion icon
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              FollowButton(
-                color: AppColors.buttonColor,
-                width: 70.w,
-                height: 40.h,
-                label: "Follow",
-                onPressed: () => ref
-                    .read(riverpodFollowingButton.notifier)
-                    .toggleIsFollowing(),
-              ),
-              Gap(8),
               Container(
-                padding: EdgeInsets.only(
-                  left: 12.r,
-                  right: 12.r,
-                  top: 9.r,
-                  bottom: 9.r,
-                ),
+                width: 80.r,
+                height: 80.r,
                 decoration: BoxDecoration(
-                  color: AppColors.backgroundColor,
-                  borderRadius: BorderRadius.circular(12.r),
-                  border: Border.all(color: Color(0xFFD4D4D4), width: 1.w),
+                  shape: BoxShape.circle,
+                  gradient:
+                      AppGradients.platinumGradiant, // Platinum gradient ring
                 ),
-                child: SvgPicture.asset(
-                  'assets/icons/instagram.svg',
-                  width: 24,
-                  height: 24,
-                  color: Colors.black, // Optional: Change icon color
-                ), // Instagram icon
-              ),
-              Gap(8),
-              Container(
-                padding: EdgeInsets.only(
-                  left: 12.r,
-                  right: 12.r,
-                  top: 9.r,
-                  bottom: 9.r,
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Color(0xFFD4D4D4), width: 1.w),
-                ),
-                child: SvgPicture.asset(
-                  'assets/icons/cup-big.svg',
-                  width: 24,
-                  height: 24,
-                  color: AppColors.primaryColor, // Optional: Change icon color
-                ), // Champion icon Instagram icon
-              ),
-            ],
-          ),
-          Gap(20.h),
-          // Row with flowers, following, and membership badge
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                children: [
-                  Text(
-                    '0',
-                    style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w600,
-                      color: const Color.fromARGB(255, 0, 0, 0),
+                child: Padding(
+                  padding:
+                      EdgeInsets.all(3.r), // Adjust padding for ring thickness
+                  child: CircleAvatar(
+                    radius: 37.r,
+                    backgroundColor: Colors.white, // Inner white border
+                    child: CircleAvatar(
+                      radius: 35.r,
+                      backgroundImage:
+                          const AssetImage('assets/images/lidiya-tesfaye.png'),
                     ),
                   ),
-                  Text('Followers',
-                      style: TextStyle(
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.w400,
-                      )),
-                ],
+                ),
               ),
-              Column(
+              SizedBox(height: 10.h),
+              // Membership description
+              Text(
+                'Member since February 2025s',
+                style: TextStyle(
+                    color: AppColors.textSecondaryColor,
+                    fontSize: 10.sp,
+                    fontWeight: FontWeight.w400),
+              ),
+              Gap(20.h),
+              // Row with button, Instagram icon, and champion icon
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    '125',
-                    style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w600,
-                      color: const Color.fromARGB(255, 0, 0, 0),
-                    ),
+                  FollowButton(
+                    color: AppColors.buttonPrimaryColor,
+                    width: 70.w,
+                    height: 40.h,
+                    label: "Follow",
+                    onPressed: () => ref
+                        .read(riverpodFollowingButton.notifier)
+                        .toggleIsFollowing(),
                   ),
-                  Text('Following',
-                      style: TextStyle(
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.w400,
-                      )),
+                  Gap(8),
+                  Container(
+                    padding: EdgeInsets.only(
+                      left: 12.r,
+                      right: 12.r,
+                      top: 9.r,
+                      bottom: 9.r,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(12.r),
+                      border: Border.all(
+                          color: AppColors.iconPrimaryBorderColor, width: 1.w),
+                    ),
+                    child: SvgPicture.asset(
+                      'assets/icons/instagram.svg',
+                      width: 24,
+                      height: 24,
+                      color: Colors.black, // Optional: Change icon color
+                    ), // Instagram icon
+                  ),
+                  Gap(8),
+                  Container(
+                    padding: EdgeInsets.only(
+                      left: 12.r,
+                      right: 12.r,
+                      top: 9.r,
+                      bottom: 9.r,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Color(0xFFD4D4D4), width: 1.w),
+                    ),
+                    child: SvgPicture.asset(
+                      'assets/icons/cup-big.svg',
+                      width: 24,
+                      height: 24,
+                      color:
+                          AppColors.primaryColor, // Optional: Change icon color
+                    ), // Champion icon Instagram icon
+                  ),
                 ],
               ),
-              Column(
+              Gap(20.h),
+              // Row with flowers, following, and membership badge
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ShaderMask(
-                    shaderCallback: (bounds) {
-                      return AppGradients.platinumGradiant.createShader(
-                        Rect.fromLTWH(
-                          0,
-                          0,
-                          bounds.width,
-                          bounds.height,
+                  Column(
+                    children: [
+                      Text(
+                        '0',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w600,
+                          color: const Color.fromARGB(255, 0, 0, 0),
                         ),
-                      );
-                    },
-                    child: Text(
-                      //TODO: Add a gradient to the text make it more like the design
-                      'Platinum',
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.whiteColor,
                       ),
-                    ),
+                      Text('Followers',
+                          style: TextStyle(
+                            fontSize: 10.sp,
+                            fontWeight: FontWeight.w400,
+                          )),
+                    ],
                   ),
-                  Text('Member badge',
-                      style: TextStyle(
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.w400,
-                      )),
+                  Column(
+                    children: [
+                      Text(
+                        '125',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w600,
+                          color: const Color.fromARGB(255, 0, 0, 0),
+                        ),
+                      ),
+                      Text('Following',
+                          style: TextStyle(
+                            fontSize: 10.sp,
+                            fontWeight: FontWeight.w400,
+                          )),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      ShaderMask(
+                        shaderCallback: (bounds) {
+                          return AppGradients.platinumGradiant.createShader(
+                            Rect.fromLTWH(
+                              0,
+                              0,
+                              bounds.width,
+                              bounds.height,
+                            ),
+                          );
+                        },
+                        child: Text(
+                          'Platinum',
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.white,
+                          ),
+                        ),
+                      ),
+                      Text('Member badge',
+                          style: TextStyle(
+                            fontSize: 10.sp,
+                            fontWeight: FontWeight.w400,
+                          )),
+                    ],
+                  ),
                 ],
               ),
+              Gap(20.h),
+              Divider(
+                thickness: 5.r,
+                color: AppColors.graylight,
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 25, top: 12.h, bottom: 12.h).w,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/icons/heart.svg',
+                      width: 24,
+                      height: 24,
+                      color: Colors.black, // Optional: Change icon color
+                    ),
+                    Gap(15.h),
+                    Text(
+                      "Actvities",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w700, fontSize: 12.sp),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                child: CustomTabBar(
+                  tabs: ref.read(riverpodFollowingButton).tabs,
+                  selectedIndex:
+                      ref.read(riverpodFollowingButton).selectedIndex,
+                  onTabSelected: (index) {
+                    ref
+                        .read(riverpodFollowingButton.notifier)
+                        .toggleSelectedIndex(index);
+                  },
+                ),
+              ),
+              _getTabContent(context, ref),
             ],
           ),
-          Gap(20.h),
-          Divider(
-            thickness: 5.r,
-            color: AppColors.lightGrayColor,
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 25, top: 12.h, bottom: 12.h).w,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SvgPicture.asset(
-                  'assets/icons/heart.svg',
-                  width: 24,
-                  height: 24,
-                  color: Colors.black, // Optional: Change icon color
-                ),
-                Gap(15.h),
-                Text(
-                  "Actvities",
-                  style:
-                      TextStyle(fontWeight: FontWeight.w700, fontSize: 12.sp),
-                )
-              ],
-            ),
-          ),
-          Container(
-            child: CustomTabBar(
-              tabs: ref.read(riverpodFollowingButton).tabs,
-              selectedIndex: ref.read(riverpodFollowingButton).selectedIndex,
-              onTabSelected: (index) {
-                ref
-                    .read(riverpodFollowingButton.notifier)
-                    .toggleSelectedIndex(index);
-              },
-            ),
-          ),
-          _getTabContent(context, ref),
-          // CustomCard(
-          //   icon: Icons.person_add,
-          //   title: "Follower only",
-          //   description: "Follow Lidiya Tesfaye to see thier recent activities",
-          //   buttonText: "Follow Thomas",
-          //   onPressed: () {
-          //     print("Button Pressed!");
-          //   },
-          // ),
-        ],
+        ),
       ),
     );
   }
@@ -285,6 +291,7 @@ Widget _getTabContent(BuildContext context, WidgetRef ref) {
   if (!ref.watch(riverpodFollowingButton).isFollowing) {
     return Column(
       children: [
+        Gap(20.h),
         CustomCard(
           icon: SvgPicture.asset(
             'assets/icons/person.svg',
@@ -312,12 +319,11 @@ Widget _getTabContent(BuildContext context, WidgetRef ref) {
   } else {
     switch (ref.read(riverpodFollowingButton).selectedIndex) {
       case 0:
-        // return Flexible(child: WelcomePage());
-        return Flexible(child: RecentPage());
+        return RecentPage(); // Remove Flexible
       case 1:
-        return Flexible(child: ResturantPage());
+        return ResturantPage(); // Remove Flexible
       case 2:
-        return Flexible(child: DishesPage());
+        return DishesPage(); // Remove Flexible
       default:
         return Center(
           child: Text(

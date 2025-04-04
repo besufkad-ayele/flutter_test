@@ -1,6 +1,7 @@
-import 'package:chapter_one/Feature/profile/bottomsheet_content.dart';
+import 'package:chapter_one/core/shared/bottomsheet/bottomsheet_content.dart';
 import 'package:chapter_one/core/Provider/riverpod.dart';
 import 'package:chapter_one/core/constant/constants.dart';
+import 'package:chapter_one/core/shared/animation/loding_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -46,27 +47,28 @@ class FollowButton extends ConsumerWidget {
           borderRadius: BorderRadius.circular(12).r,
           side: BorderSide(
             color: isFollowing
-                ? AppColors.lightGrayBorderColor
-                : AppColors.borderColor,
+                ? AppColors.iconPrimaryBorderColor
+                : AppColors.buttonBorderred,
             width: 1.5.r,
           ),
         ),
         minimumSize: Size(width, height),
-        backgroundColor: isFollowing ? AppColors.whiteColor : color,
+        backgroundColor: isFollowing ? AppColors.white : color,
       ),
       child: isLoading
           ? SizedBox(
               width: 24.w,
               height: 24.h,
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
                     child: Center(
-                      child: CircularProgressIndicator(
-                        color: AppColors.textWhiteColor,
-                        strokeWidth: 1.0,
-                      ),
+                      child: ThreeDotLoading(),
+                      // CircularProgressIndicator(
+                      //   color: AppColors.textWhiteColor,
+                      //   strokeWidth: 1.0,
+                      // ),
                     ),
                   )
                 ],
@@ -76,8 +78,8 @@ class FollowButton extends ConsumerWidget {
               isFollowing ? "Following" : label,
               style: TextStyle(
                 color: isFollowing
-                    ? AppColors.blackColor
-                    : AppColors.textWhiteColor,
+                    ? AppColors.black
+                    : AppColors.white,
                 fontWeight: FontWeight.w700,
                 fontSize: 12.r,
               ),

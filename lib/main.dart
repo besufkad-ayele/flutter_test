@@ -8,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 void main() {
-  runApp(ProviderScope(child: const MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -27,8 +27,8 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             textTheme: AppTextTheme.textTheme,
             colorScheme: ColorScheme.fromSeed(
-                seedColor: AppColors.backgroundColor,
-                surface: AppColors.backgroundColor),
+                seedColor: AppColors.white,
+                surface: AppColors.white,),
             useMaterial3: true,
           ),
           home: const WelcomePage(),

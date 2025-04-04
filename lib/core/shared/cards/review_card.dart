@@ -1,50 +1,10 @@
+import 'dart:ui';
+
 import 'package:chapter_one/core/constant/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-
-class RecentPage extends StatelessWidget {
-  const RecentPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-        width: double.infinity, // Ensures the container takes the full width
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment:
-              CrossAxisAlignment.start, // Aligns children to the left
-          children: [
-            Padding(
-              padding: EdgeInsets.only(left: 25.w),
-              child: Text(
-                '2 Reviewed Restaurants',
-                style: TextStyle(
-                  fontSize: 10.sp,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.darkGrayColor,
-                ),
-                textAlign: TextAlign.left,
-              ),
-            ),
-            Gap(12.h),
-            ReviewCard(),
-            Gap(12.h),
-            Divider(
-              color: AppColors.lightGrayColor,
-              thickness: 1,
-            ),
-            Gap(12.h),
-            ReviewCard()
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 class ReviewCard extends StatelessWidget {
   const ReviewCard({
@@ -82,7 +42,7 @@ class ReviewCard extends StatelessWidget {
                     alignment: Alignment.bottomRight,
                     child: CircleAvatar(
                       radius: 31.r,
-                      backgroundColor: Colors.white,
+                      backgroundColor: AppColors.white,
                       child: CircleAvatar(
                         radius: 30.r,
                         backgroundImage: const AssetImage(
@@ -109,7 +69,7 @@ class ReviewCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 10.sp,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.blackColor,
+                        color: AppColors.black,
                       ),
                     ),
                     Container(
@@ -117,16 +77,17 @@ class ReviewCard extends StatelessWidget {
                       height: 3.h,
                       margin: EdgeInsets.only(right: 5.w, left: 5.w),
                       decoration: BoxDecoration(
-                        color: AppColors.lightGrayColor,
+                        color: AppColors.graylight,
                         borderRadius: BorderRadius.circular(5.r),
                       ),
                     ),
+
+                    //Todos: make it silver color
                     SvgPicture.asset(
                       'assets/icons/review.svg',
                       width: 12.w,
                       height: 12.h,
-                      color: AppColors
-                          .darkGrayColor, // Optional: Change icon color
+                      color: AppColors.gray, // Optional: Change icon color
                     ),
                   ],
                 ),
@@ -143,7 +104,7 @@ class ReviewCard extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 10.sp,
                             fontWeight: FontWeight.w400,
-                            color: AppColors.blackColor,
+                            color: AppColors.black,
                           ),
                         ),
                         Text(
@@ -151,7 +112,7 @@ class ReviewCard extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 10.sp,
                             fontWeight: FontWeight.bold,
-                            color: AppColors.blackColor,
+                            color: AppColors.black,
                           ),
                         ),
                       ],
@@ -176,9 +137,7 @@ class ReviewCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: index < 4 ? AppColors.primaryColor : Colors.white,
                     border: Border.all(
-                      color: index < 4
-                          ? Colors.transparent
-                          : AppColors.darkGrayColor,
+                      color: index < 4 ? Colors.transparent : AppColors.gray,
                     ),
                     shape: BoxShape.rectangle,
                     borderRadius:
@@ -189,8 +148,8 @@ class ReviewCard extends StatelessWidget {
                     width: 12.w,
                     height: 12.h,
                     color: index < 4
-                        ? AppColors.whiteColor
-                        : AppColors.lightGrayBorderColor,
+                        ? AppColors.white
+                        : AppColors.iconPrimaryBorderColor,
                   ));
             }),
           ),
@@ -200,7 +159,7 @@ class ReviewCard extends StatelessWidget {
           'The food was delicious and well-prepared, with a perfect balance of flavors.',
           style: TextStyle(
             fontSize: 12.sp,
-            color: AppColors.blackColor,
+            color: AppColors.black,
           ),
         ),
         Gap(15.h),
@@ -211,7 +170,7 @@ class ReviewCard extends StatelessWidget {
           style: TextStyle(
             fontSize: 10.sp,
             fontWeight: FontWeight.w400,
-            color: AppColors.darkGrayColor,
+            color: AppColors.gray,
           ),
         ),
       ],

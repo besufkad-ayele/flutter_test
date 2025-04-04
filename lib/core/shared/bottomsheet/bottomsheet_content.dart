@@ -13,7 +13,7 @@ class BottomsheetContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.whiteColor,
+        color: AppColors.white,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(16.r),
           topRight: Radius.circular(16.r),
@@ -35,7 +35,7 @@ class BottomsheetContent extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           const Text(
-            'Thomas',
+            'Lidiya Tesfaye',
             style: TextStyle(
                 fontSize: 16,
                 decoration: TextDecoration.underline,
@@ -79,7 +79,7 @@ class BottomsheetContent extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.all(10).r,
                       child: Text(
-                        '#19',
+                        '#25',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 12.sp, fontWeight: FontWeight.bold),
@@ -108,7 +108,7 @@ class BottomsheetContent extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.all(10).r,
                       child: Text(
-                        '#19',
+                        '#789',
                         style: TextStyle(
                             fontSize: 12.sp, fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
@@ -135,7 +135,7 @@ class BottomsheetContent extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
                 side: BorderSide(
-                  color: AppColors.lightGrayColor,
+                  color: AppColors.graylight,
                   width: 1.r,
                 ),
               ),
@@ -147,10 +147,9 @@ class BottomsheetContent extends StatelessWidget {
                 Text(''),
                 Text(
                   "View Leaderboard",
-                  style: TextStyle(color: AppColors.blackColor),
+                  style: TextStyle(color: AppColors.black),
                 ),
-                Icon(Icons.arrow_forward,
-                    color: AppColors.blackColor, size: 16.sp),
+                Icon(Icons.arrow_forward, color: AppColors.black, size: 16.sp),
               ],
             ),
           )

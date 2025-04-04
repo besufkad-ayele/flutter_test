@@ -1,4 +1,5 @@
 import 'package:chapter_one/Feature/profile/profile.dart';
+import 'package:chapter_one/core/constant/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,7 +11,7 @@ class WelcomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Welcome Page',
+          '',
         ),
         centerTitle: true,
       ),
@@ -19,7 +20,7 @@ class WelcomePage extends StatelessWidget {
           padding: EdgeInsets.all(16.0.r),
           child: Card(
             elevation: 78.r,
-            color: const Color.fromARGB(106, 255, 255, 255),
+            color: AppColors.whiteopacity,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
@@ -35,7 +36,7 @@ class WelcomePage extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 24.r,
                       fontWeight: FontWeight.w100,
-                      color: const Color.fromARGB(255, 215, 136, 0),
+                      color: AppColors.primaryColor,
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -50,7 +51,7 @@ class WelcomePage extends StatelessWidget {
                     },
                     icon: const Icon(
                       Icons.person_outlined,
-                      color: Color.fromARGB(255, 255, 255, 255),
+                      color: AppColors.gray,
                     ),
                     label: Text(
                         style: TextStyle(
@@ -61,7 +62,7 @@ class WelcomePage extends StatelessWidget {
                         ),
                         'Go to Profile Page'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(40, 22, 99, 232),
+                      backgroundColor: AppColors.textbackground,
                       padding: EdgeInsets.symmetric(
                         horizontal: 24.h,
                         vertical: 16.w,

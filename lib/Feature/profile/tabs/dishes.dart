@@ -14,15 +14,15 @@ class DishesPage extends StatelessWidget {
       children: [
         Gap(20.h),
         Padding(
-          padding: EdgeInsets.only(left: 20.0).r,
+          padding: EdgeInsets.only(left: 40.0).r,
           child: Align(
             alignment: Alignment.topLeft,
             child: Text(
-              '4 Saved Dishes',
+              '3 Saved Dishes',
               style: TextStyle(
                 fontSize: 10.sp,
                 fontWeight: FontWeight.w600,
-                color: AppColors.darkGrayColor,
+                color: AppColors.textSecondaryColor,
               ),
               textAlign: TextAlign.left,
             ),
@@ -38,8 +38,10 @@ class DishesPage extends StatelessWidget {
                 height: 190,
                 margin: const EdgeInsets.symmetric(horizontal: 10.0).r,
                 decoration: BoxDecoration(
-                  border:
-                      Border.all(color: AppColors.borderColor.withOpacity(0.5)),
+                  gradient: AppGradients.goldenGradiant,
+                  border: Border.all(
+                    color: AppColors.white,
+                  ),
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 child: Container(
@@ -72,13 +74,6 @@ class DishesPage extends StatelessWidget {
                             height: 15.h,
                           ),
                         ),
-
-                        // SvgPicture.asset(
-                        //   'assets/images/goat.jpg',
-                        //   width: 24,
-                        //   height: 24,
-                        //   color: AppColors.primaryColor,
-                        // ),
                       ),
                       Positioned(
                         bottom: 12,
@@ -91,7 +86,7 @@ class DishesPage extends StatelessWidget {
                               'Frappuccino',
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 12,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.w700),
                             ),
                             Text(
