@@ -14,7 +14,7 @@ class DishesPage extends StatelessWidget {
       children: [
         Gap(20.h),
         Padding(
-          padding: EdgeInsets.only(left: 40.0).r,
+          padding: const EdgeInsets.only(left: 40.0).r,
           child: Align(
             alignment: Alignment.topLeft,
             child: Text(
@@ -49,7 +49,7 @@ class DishesPage extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     image: DecorationImage(
-                      image: AssetImage(
+                      image: const AssetImage(
                         'assets/images/food1.png',
                       ),
                       colorFilter: ColorFilter.mode(
@@ -105,7 +105,7 @@ class DishesPage extends StatelessWidget {
                                 ),
                                 Gap(10.w),
                                 Container(
-                                  padding: EdgeInsets.all(4).r,
+                                  padding: const EdgeInsets.all(4).r,
                                   decoration: BoxDecoration(
                                     color: AppColors.primaryColor,
                                     border: Border.all(

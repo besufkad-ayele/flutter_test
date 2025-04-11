@@ -17,7 +17,7 @@ class ResturantCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final images = ref.watch(riverpodFollowingButton).foodImages;
     return Container(
-      padding: EdgeInsets.only(left: 5, top: 5, right: 5, bottom: 15).r,
+      padding: const EdgeInsets.only(left: 5, top: 5, right: 5, bottom: 15).r,
       width: 320.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25.r),
@@ -29,7 +29,7 @@ class ResturantCard extends ConsumerWidget {
           BoxShadow(
             color: const Color.fromARGB(255, 255, 255, 255).withOpacity(0.1),
             blurRadius: 12,
-            offset: Offset(0, 2),
+            offset: const Offset(0, 2),
           ),
         ],
       ),
@@ -44,7 +44,7 @@ class ResturantCard extends ConsumerWidget {
               bottomLeft: Radius.circular(5.r),
               bottomRight: Radius.circular(5.r),
             ),
-            child: Container(
+            child: SizedBox(
               height: 150.h,
               width: 320.w,
               child: Stack(
@@ -104,7 +104,7 @@ class ResturantCard extends ConsumerWidget {
                                   children: List.generate(
                                     images.length,
                                     (index) => AnimatedContainer(
-                                      duration: Duration(milliseconds: 300),
+                                      duration: const Duration(milliseconds: 300),
                                       width: 8.w,
                                       height: 8.h,
                                       margin:
@@ -131,7 +131,7 @@ class ResturantCard extends ConsumerWidget {
                     child: Container(
                       width: 35.w,
                       height: 35.h,
-                      padding: EdgeInsets.all(8).r,
+                      padding: const EdgeInsets.all(8).r,
                       decoration: BoxDecoration(
                         color: AppColors.iconBackgroundOrange,
                         border: Border.all(
@@ -161,7 +161,7 @@ class ResturantCard extends ConsumerWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text(
+                    const Text(
                       '190 - 570',
                       style:
                           TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
@@ -170,7 +170,7 @@ class ResturantCard extends ConsumerWidget {
                     Row(
                       children: [
                         Container(
-                          padding: EdgeInsets.all(5).r,
+                          padding: const EdgeInsets.all(5).r,
                           decoration: BoxDecoration(
                             color: AppColors.primaryColor,
                             border: Border.all(
@@ -190,11 +190,11 @@ class ResturantCard extends ConsumerWidget {
                       ],
                     ),
                     Gap(5.w),
-                    Text("Price")
+                    const Text("Price")
                   ],
                 ),
                 Container(
-                  padding: EdgeInsets.all(5).r,
+                  padding: const EdgeInsets.all(5).r,
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(38, 255, 102, 0),
                     borderRadius: BorderRadius.circular(8),
@@ -203,7 +203,7 @@ class ResturantCard extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(5).r,
+                        padding: const EdgeInsets.all(5).r,
                         decoration: BoxDecoration(
                           color: AppColors.primaryColor,
                           border: Border.all(
@@ -212,8 +212,8 @@ class ResturantCard extends ConsumerWidget {
                           ),
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child: Icon(Icons.star,
-                            color: const Color.fromARGB(255, 255, 255, 255),
+                        child: const Icon(Icons.star,
+                            color: Color.fromARGB(255, 255, 255, 255),
                             size: 16),
                       ),
                       Gap(5.w),
@@ -244,7 +244,7 @@ class ResturantCard extends ConsumerWidget {
                   ),
                 ),
                 Gap(16.w),
-                Icon(
+                const Icon(
                   Icons.arrow_right_alt,
                 ),
               ],
@@ -274,7 +274,7 @@ class ResturantCard extends ConsumerWidget {
                   color: AppColors.black,
                 ),
                 Gap(4.w),
-                Text(
+                const Text(
                   'Near Tadele Garage',
                   style: TextStyle(
                     fontSize: 12,
@@ -290,8 +290,8 @@ class ResturantCard extends ConsumerWidget {
             children: [
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(left: 5, top: 5, bottom: 5).r,
-                  margin: EdgeInsets.only(left: 8, top: 4).r,
+                  padding: const EdgeInsets.only(left: 5, top: 5, bottom: 5).r,
+                  margin: const EdgeInsets.only(left: 8, top: 4).r,
                   decoration: BoxDecoration(
                     color: AppColors.textbackground,
                     borderRadius: BorderRadius.circular(8),
@@ -323,8 +323,8 @@ class ResturantCard extends ConsumerWidget {
               Container(
                 width: 36.w,
                 height: 24.h,
-                padding: EdgeInsets.all(4).r,
-                margin: EdgeInsets.only(
+                padding: const EdgeInsets.all(4).r,
+                margin: const EdgeInsets.only(
                   right: 0,
                 ).r,
                 decoration: BoxDecoration(

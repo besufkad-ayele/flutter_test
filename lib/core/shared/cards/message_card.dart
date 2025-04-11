@@ -57,7 +57,7 @@ class CustomCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Gap(16),
+                const Gap(16),
                 Text(
                   description,
                   textAlign: TextAlign.center,
@@ -66,7 +66,7 @@ class CustomCard extends StatelessWidget {
                     color: AppColors.textSecondaryColor,
                   ),
                 ),
-                Gap(20),
+                const Gap(20),
                 ElevatedButton(
                   onPressed: onPressed,
                   style: ElevatedButton.styleFrom(

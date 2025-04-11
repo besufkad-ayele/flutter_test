@@ -14,7 +14,7 @@ class FollowButton extends ConsumerWidget {
   final Function onPressed;
   final Color? borderColor;
 
-  FollowButton(
+  const FollowButton(
       {super.key,
       required this.color,
       required this.width,
@@ -33,7 +33,7 @@ class FollowButton extends ConsumerWidget {
         showModalBottomSheet(
           context: context,
           builder: (context) {
-            return BottomsheetContent();
+            return const BottomsheetContent();
           },
         );
       }

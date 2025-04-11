@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ThreeDotLoading extends StatefulWidget {
+  const ThreeDotLoading({super.key});
+
   @override
   _ThreeDotLoadingState createState() => _ThreeDotLoadingState();
 }
@@ -62,7 +64,7 @@ class _ThreeDotLoadingState extends State<ThreeDotLoading>
                         EdgeInsets.symmetric(horizontal: minDimension * 0.05),
                     width: size,
                     height: size,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                       shape: BoxShape.circle,
                     ),

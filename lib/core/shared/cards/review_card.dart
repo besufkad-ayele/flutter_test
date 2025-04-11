@@ -21,7 +21,7 @@ class ReviewCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             //This is for the avarter aligning
-            Container(
+            SizedBox(
               width: 80.w,
               height: 70.h,
               child: Stack(

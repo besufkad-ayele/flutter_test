@@ -10,7 +10,7 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           '',
         ),
         centerTitle: true,
@@ -53,7 +53,7 @@ class WelcomePage extends StatelessWidget {
                       Icons.person_outlined,
                       color: AppColors.gray,
                     ),
-                    label: Text(
+                    label: const Text(
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,

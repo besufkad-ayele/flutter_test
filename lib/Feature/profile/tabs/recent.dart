@@ -2,7 +2,6 @@ import 'package:chapter_one/core/constant/constants.dart';
 import 'package:chapter_one/core/shared/cards/review_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class RecentPage extends StatelessWidget {

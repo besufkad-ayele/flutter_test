@@ -1,15 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:ffi';
 
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:chapter_one/core/Provider/riverpod.dart';
 import 'package:chapter_one/core/constant/constants.dart';
 import 'package:chapter_one/core/shared/cards/resturant_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class ResturantPage extends ConsumerWidget {

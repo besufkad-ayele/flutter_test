@@ -74,57 +74,58 @@ class Profile extends ConsumerWidget {
                     fontSize: 10.sp,
                     fontWeight: FontWeight.w400),
               ),
-              Gap(20.h),
+              Gap(15.h),
               // Row with button, Instagram icon, and champion icon
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   FollowButton(
                     color: AppColors.buttonPrimaryColor,
-                    width: 70.w,
-                    height: 40.h,
+                    width: 90.w,
+                    height: 35.h,
                     label: "Follow",
                     onPressed: () => ref
                         .read(riverpodFollowingButton.notifier)
                         .toggleIsFollowing(),
                   ),
-                  Gap(8),
+                  Gap(5.w),
                   Container(
                     padding: EdgeInsets.only(
-                      left: 12.r,
-                      right: 12.r,
-                      top: 9.r,
-                      bottom: 9.r,
+                      left: 8.r,
+                      right: 8.r,
+                      top: 8.r,
+                      bottom: 8.r,
                     ),
                     decoration: BoxDecoration(
                       color: AppColors.white,
-                      borderRadius: BorderRadius.circular(12.r),
+                      borderRadius: BorderRadius.circular(10.r),
                       border: Border.all(
                           color: AppColors.iconPrimaryBorderColor, width: 1.w),
                     ),
                     child: SvgPicture.asset(
                       'assets/icons/instagram.svg',
-                      width: 24,
-                      height: 24,
+                      width: 20.w,
+                      height: 20.h,
                       color: Colors.black, // Optional: Change icon color
                     ), // Instagram icon
                   ),
                   Gap(8),
                   Container(
                     padding: EdgeInsets.only(
-                      left: 12.r,
-                      right: 12.r,
-                      top: 9.r,
-                      bottom: 9.r,
+                      left: 8.r,
+                      right: 8.r,
+                      top: 8.r,
+                      bottom: 8.r,
                     ),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Color(0xFFD4D4D4), width: 1.w),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                          color: AppColors.iconPrimaryBorderColor, width: 1.w),
                     ),
                     child: SvgPicture.asset(
                       'assets/icons/cup-big.svg',
-                      width: 24,
-                      height: 24,
+                      width: 20.w,
+                      height: 20.h,
                       color:
                           AppColors.primaryColor, // Optional: Change icon color
                     ), // Champion icon Instagram icon
@@ -139,7 +140,7 @@ class Profile extends ConsumerWidget {
                   Column(
                     children: [
                       Text(
-                        '0',
+                        '25',
                         style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w600,
@@ -213,8 +214,8 @@ class Profile extends ConsumerWidget {
                   children: [
                     SvgPicture.asset(
                       'assets/icons/heart.svg',
-                      width: 24,
-                      height: 24,
+                      width: 18,
+                      height: 12,
                       color: Colors.black, // Optional: Change icon color
                     ),
                     Gap(15.h),

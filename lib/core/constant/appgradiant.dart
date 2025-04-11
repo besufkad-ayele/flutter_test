@@ -15,7 +15,7 @@ class AppGradients {
   static const LinearGradient goldenGradiant = LinearGradient(
     colors: [
       Color(0xFFFBCE0F),
-      Color(0XFF9800),
+      Color(0x00ff9800),
     ],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
